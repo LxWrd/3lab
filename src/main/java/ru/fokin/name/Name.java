@@ -1,10 +1,10 @@
-package org.example;
+package ru.fokin.name;
 
 public class Name {
     public String lastName;     // Фамилия
     public final String firstName;    // Имя
     public String patronymic;   // Отчество
-    public final Name parent;         // Родитель
+    public Name parent;         // Родитель
 
     // Конструктор для создания ФИО
     public Name(String lastName, String firstName, String patronymic) {
@@ -24,6 +24,10 @@ public class Name {
     }
 
     public void setParent(Name parent) {
+        // Условие проверки на родителя (изначально пытался сделать через final)
+        if (this.parent != null) {
+            throw new IllegalArgumentException("Отец уже задан");
+        }
         this.parent = parent;
         // Добавление фамилий, если ее нету
         if (this.lastName == null) {
